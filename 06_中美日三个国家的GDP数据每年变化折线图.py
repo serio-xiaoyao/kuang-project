@@ -36,7 +36,10 @@ set_chinese_font()  # 解决中文乱码问题
 
 # 读取数据
 df = pd.read_csv('data/1960-2019全球GDP数据.csv', encoding='gbk', sep=',')
-# print('数据形状:', df.shape)  # 形状(9931, 3)
+# print(df)
+# print(df['year'])
+# print(df['country'])
+print('数据形状:', df.shape)  # 形状(9931, 3)
 # print('维度：', df.ndim)
 # print(df.head())
 # print(df.tail())
@@ -47,4 +50,25 @@ df = pd.read_csv('data/1960-2019全球GDP数据.csv', encoding='gbk', sep=',')
 
 # 数据预处理
 df.dropna(inplace=True)
+print('数据形状:', df.shape)  # 形状(9930, 3)
 
+# 数据分析 
+# 查询中美日的GDP数据
+df_usa = df[df['country'] == '美国']
+df_china = df[df['country'] == '中国']
+df_japan = df[df['country'] == '日本']
+# print(df_usa)
+# print(df_china)
+# print(df_japan)
+
+# print(df_usa.head())
+# print(df_china.head())
+# print(df_japan.head())
+
+# 把年份作为索引列
+df_usa.set_index('year', inplace=True)
+df_china.set_index('year', inplace=True)
+df_japan.set_index('year', inplace=True)
+print(df_usa.head())
+# print(df_china.head())
+# print(df_japan.head())
